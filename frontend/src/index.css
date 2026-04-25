@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-colborder: #e5e8eb;
+  --color-bgbutton: #125ced;
+  --color-details: #4d6699;
+
+  --font-lexend: "Lexend", sans-serif;
+}
+
+@layer base {
+  button {
+    @apply bg-bgbutton font-lexend text-white px-4 py-3 font-bold rounded-lg text-[14px];
+  }
+
+  h1 {
+    @apply text-[50px] font-bold text-center;
+  }
+
+  h2 {
+    @apply text-[36px] font-bold;
+  }
+
+  h3 {
+    @apply text-[16px] text-black;
+  }
+}
+
+body {
+  @apply font-lexend;
+}
+
+.hero {
+  @apply flex flex-col bg-[#94ab99] object-cover h-[512px] items-center justify-center p-5 text-[#f8ead0] rounded-lg;
+}
+
+.feature-card {
+  @apply rounded-lg border-colborder border-2 px-4 py-4 max-w-[301px] shrink-0 h-[178px] flex flex-col;
+}
