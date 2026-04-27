@@ -24,6 +24,10 @@
   h3 {
     @apply text-[16px] text-black;
   }
+
+  input {
+    @apply border border-gray-500 rounded-lg px-2 placeholder-shown:text-gray-500;
+  }
 }
 
 body {

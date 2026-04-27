@@ -33,12 +33,11 @@ class UserController extends Controller
         ]
     )]
 
-    public function index(): JsonResponse{
-        $users = Cache::remember('users', 60, function(){
-            return User::all();
-        });
+    public function index(): JsonResponse
+    {
+        $users =  User::all();
 
-        if($users->isEmpty()){
+        if ($users->isEmpty()) {
             return $this->notFoundResponse();
         }
 
@@ -53,13 +52,13 @@ class UserController extends Controller
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["name","email","password","phone"],
+                required: ["name", "email", "password", "phone"],
                 properties: [
                     new OA\Property(property: "name", type: "string", example: "Tirta"),
                     new OA\Property(property: "email", type: "string", example: "tirta@email.com"),
                     new OA\Property(property: "password", type: "string", example: "password123"),
                     new OA\Property(property: "phone", type: "string", example: "08123456789"),
-                    new OA\Property(property: "role", type: "string", enum: ["user","instructor"])
+                    new OA\Property(property: "role", type: "string", enum: ["user", "instructor"])
                 ]
             )
         ),
@@ -75,7 +74,8 @@ class UserController extends Controller
         ]
     )]
 
-    public function store(Request $request): JsonResponse{
+    public function store(Request $request): JsonResponse
+    {
 
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:100',
@@ -83,7 +83,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8|max:16',
             'phone' => 'required|string|min:11|max:20',
             'role' => 'nullable|string|in:user,instructor',
-        ],[
+        ], [
             //Name
             'name.required' => 'Name tidak boleh kosong',
             'name.string' => 'Name harus berupa teks',
@@ -148,12 +148,11 @@ class UserController extends Controller
         ]
     )]
 
-    public function show(string $id): JsonResponse{
-        $user = Cache::remember('users.' . $id, 60, function () use ($id) {
-            return User::findOrFail($id);
-        });
+    public function show(string $id): JsonResponse
+    {
+        $user = User::findOrFail($id);
 
-        if(!$user){
+        if (!$user) {
             return $this->notFoundResponse();
         }
 
@@ -181,7 +180,7 @@ class UserController extends Controller
                     new OA\Property(property: "email", type: "string"),
                     new OA\Property(property: "password", type: "string"),
                     new OA\Property(property: "phone", type: "string"),
-                    new OA\Property(property: "role", type: "string", enum: ["user","instructor"])
+                    new OA\Property(property: "role", type: "string", enum: ["user", "instructor"])
                 ]
             )
         ),
@@ -197,14 +196,15 @@ class UserController extends Controller
         ]
     )]
 
-    public function update(string $id, Request $request): JsonResponse{
+    public function update(string $id, Request $request): JsonResponse
+    {
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:100',
             'email' => 'required|string|min:3|max:100',
             'password' => 'required|string|min:8|max:16',
             'phone' => 'required|string|min:11|max:20',
             'role' => 'nullable|string|in:user,instructor',
-        ],[
+        ], [
             //Name
             'name.required' => 'Name tidak boleh kosong',
             'name.string' => 'Name harus berupa teks',
@@ -226,23 +226,23 @@ class UserController extends Controller
             'password.max' => 'Password maksimal 16 karakter',
             //Password
 
-             //Password
-             'phone.required' => 'Nomor telepon tidak boleh kosong',
-             'phone.string' => 'Nomor telepon harus berupa teks',
-             'phone.min' => 'Nomor telepon minimal 11 karakter',
-             'phone.max' => 'Nomor telepon maksimal 20 karakter',
-             //Password
+            //Password
+            'phone.required' => 'Nomor telepon tidak boleh kosong',
+            'phone.string' => 'Nomor telepon harus berupa teks',
+            'phone.min' => 'Nomor telepon minimal 11 karakter',
+            'phone.max' => 'Nomor telepon maksimal 20 karakter',
+            //Password
 
-             //Role
-             'role.string' => 'Role harus berupa teks',
-             'role.in' => 'Role harus berupa user atau instructor'
-             //Role
+            //Role
+            'role.string' => 'Role harus berupa teks',
+            'role.in' => 'Role harus berupa user atau instructor'
+            //Role
         ]);
 
         $user = User::findOrFail($id);
         $user->update($validated);
 
-         return $this->successResponse($user, "User berhasil diperbarui");
+        return $this->successResponse($user, "User berhasil diperbarui");
     }
 
     #[OA\Delete(
@@ -270,7 +270,8 @@ class UserController extends Controller
         ]
     )]
 
-    public function destroy(string $id): JsonResponse{
+    public function destroy(string $id): JsonResponse
+    {
         $user = User::findOrFail($id);
         $user->delete();
 
