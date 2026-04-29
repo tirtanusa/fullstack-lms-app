@@ -10,7 +10,7 @@
 
 @layer base {
   button {
-    @apply bg-bgbutton font-lexend text-white px-4 py-3 font-bold rounded-lg text-[14px];
+    @apply bg-bgbutton font-lexend text-white px-4 py-3 font-bold rounded-lg text-[14px] cursor-pointer;
   }
 
   h1 {
