@@ -10,21 +10,46 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const fetchUser = async (token) => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        login(json.data, token);
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // ✅ cegah reload halaman
 
     try {
       const res = await fetch("http://127.0.0.1:8000/api/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+
         body: JSON.stringify({ email, password }),
       });
 
       const json = await res.json();
 
       if (json.success) {
-        login(null, json.data.token); // ✅ simpan ke context
-        navigate("/"); // ✅ redirect setelah login
+        const token = json.data.access_token;
+        console.log("Token dari login:", token);
+        await fetchUser(token);
       } else {
         setError(json.message);
       }

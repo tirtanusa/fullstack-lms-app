@@ -1,12 +1,14 @@
 import { LibraryBig } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Navbar = () => {
-  const { isLoggedIn, logout } = useAuth();
+  const { token, logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
+    navigate("/");
   };
   return (
     <>
@@ -27,31 +29,32 @@ const Navbar = () => {
             <div>Courses</div>
             <div>About</div>
             <div>Contact</div>
-            {isLoggedIn ? (
-              <>
-                {" "}
-                {/* ✅ wrap dengan fragment */}
-                <Link to="/login">Dashboard</Link>
-                <Link to="/register">Registrasi</Link>
-                <Link to="/succeed">
-                  <button className="bg-red-400" onClick={handleLogout}>
-                    Log Out
-                  </button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <div className="flex gap-4">
-                  <Link to="/register">
-                    <button>Sign Up</button>
-                  </Link>
-                  <Link to="/login">
-                    <button>Login</button>
-                  </Link>
-                </div>
-              </>
-            )}
           </div>
+          {token ? (
+            <>
+              {" "}
+              {/* ✅ wrap dengan fragment */}
+              <div className="flex items-center gap-6">
+                <Link to="/dashboard" className="hidden md:flex">
+                  Dashboard
+                </Link>
+                <button className="bg-red-400" onClick={handleLogout}>
+                  Log Out
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex gap-4">
+                <Link to="/register">
+                  <button>Sign Up</button>
+                </Link>
+                <Link to="/login">
+                  <button>Login</button>
+                </Link>
+              </div>
+            </>
+          )}
           {/* signup */}
 
           {/* signup */}

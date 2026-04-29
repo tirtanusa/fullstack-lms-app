@@ -135,9 +135,7 @@ class CourseController extends Controller
 
     public function show(string $request): JsonResponse
     {
-        $course = Cache::remember('courses.' . $request, 60, function () use ($request) {
-            return Course::with(['category', 'instructor:id,name'])->findOrFail($request);
-        });
+        $course =  Course::with(['category', 'instructor:id,name'])->findOrFail($request);
 
         if (!$course) {
             return $this->notFoundResponse();
@@ -430,5 +428,16 @@ class CourseController extends Controller
         }
 
         return $this->successResponse($lowestPriceCourses, 'Data kursus dengan harga terendah berhasil diambil');
+    }
+
+    public function createdCourse($instructorId): JsonResponse
+    {
+        $createdCourse = Course::where('instructor_id', $instructorId)->get();
+
+        if ($createdCourse->isEmpty()) {
+            return $this->notFoundResponse();
+        }
+
+        return $this->successResponse($createdCourse, 'Data kursus berhasil diambil');
     }
 }
