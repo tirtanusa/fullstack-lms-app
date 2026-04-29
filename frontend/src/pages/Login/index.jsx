@@ -38,16 +38,6 @@ const Login = () => {
       <div className="min-h-[80vh] flex justify-center items-center md:w-1/2 md:mx-auto">
         <div className="w-full h-150  bg-white rounded-lg shadow-xl border border-colborder flex  justify-between">
           <div className="flex flex-col w-full justify-center px-8 gap-6">
-            <div className="font-bold text-xl flex flex-col  mb-2 items-center">
-              <div className="drop-shadow-xl bg-white w-fit p-2 rounded-lg">
-                {" "}
-                <SquareArrowRightEnter />
-              </div>
-              <h2>Welcome back</h2>
-              <p className="text-sm font-light text-gray-500">
-                Please Log in to your account and start learning with us!
-              </p>
-            </div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-1">
               {error && <p className="text-red-500">{error}</p>}
               <label htmlFor="email">Email</label>
@@ -73,7 +63,18 @@ const Login = () => {
             </form>
           </div>
           <div className="hidden lg:flex w-full  p-7">
-            <div className="w-full bg-linear-to-r from-teal-400 to-yellow-200 rounded-lg"></div>
+            <div className="w-full bg-linear-to-tr from-yellow-200 via-teal-400  to-yellow-200  rounded-lg flex flex-col justify-center">
+              <div className="font-bold text-xl flex flex-col  mb-2 items-center">
+                <div className="drop-shadow-xl bg-white w-fit p-2 rounded-lg">
+                  {" "}
+                  <SquareArrowRightEnter />
+                </div>
+                <h2 className="text-white">Welcome back</h2>
+                <p className="text-sm font-light text-white">
+                  Please Log in to your account and start learning with us!
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
