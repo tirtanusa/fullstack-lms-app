@@ -203,7 +203,7 @@ class UserController extends Controller
             'email' => 'required|string|min:3|max:100',
             'password' => 'required|string|min:8|max:16',
             'phone' => 'required|string|min:11|max:20',
-            'role' => 'nullable|string|in:user,instructor',
+            'role' => 'nullable|string|in:user,instructor,admin',
         ], [
             //Name
             'name.required' => 'Name tidak boleh kosong',

@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [\App\Http\Controllers\AuthController::class, 'me']);
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 
-    Route::apiResource('/users', UserController::class)->except(['edit', 'create']);
+
 
 
 
@@ -37,5 +37,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('role:admin')->group(function () {
         // Student only routes can be added here in the future
         Route::apiResource('/categories', CategoryController::class)->except(['index', 'show']);
+        Route::apiResource('/users', UserController::class)->except(['edit', 'create']);
     });
 });
