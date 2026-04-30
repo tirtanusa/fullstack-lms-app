@@ -1,9 +1,11 @@
 import { BadgeCheck } from "lucide-react";
 import CourseContainer from "./CourseContainer";
 import { useAuth } from "../../hooks/useAuth";
+import { Navigate } from "react-router";
+import UserTable from "../AdminDashboard/UserTable";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
 
   const profile = user
     ? {
@@ -14,6 +16,14 @@ const Dashboard = () => {
         id: user.id,
       }
     : null;
+
+  if (isLoading)
+    return (
+      <p className="h-screen w-full flex flex-col items-center justify-center">
+        Loading...
+      </p>
+    );
+  if (!user) return <Navigate to="/login" />;
   return (
     <>
       <div className="md:grid md:grid-cols-3">
@@ -51,6 +61,8 @@ const Dashboard = () => {
           <CourseContainer courseName="Course 1" />
           <CourseContainer courseName="Course 2" />
         </div>
+      ) : profile.role === "admin" ? (
+        <UserTable />
       ) : (
         <></>
       )}

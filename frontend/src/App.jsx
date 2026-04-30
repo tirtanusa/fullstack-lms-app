@@ -8,6 +8,9 @@ import NotifRegisPage from "./pages/Register/NotifRegisPage";
 import Dashboard from "./pages/Dashboard";
 import { useAuth } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
+import RoleProtectedRoute from "./components/RoleProtectedRoute";
+import AdminDashboard from "./pages/AdminDashboard/index.jsx";
+import Unauthorized from "./components/Unauthorized.jsx";
 
 function App() {
   const { isLoggedIn } = useAuth();
@@ -20,8 +23,12 @@ function App() {
         <Route element={<ProtectedRoute isAuthenticated={isLoggedIn} />}>
           <Route path="/dashboard" element={<Dashboard />}></Route>
         </Route>
+        <Route element={<RoleProtectedRoute allowedRoles={["admin"]} />}>
+          <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
+        </Route>
       </Route>
       <Route path="/success" element={<NotifRegisPage />}></Route>
+      <Route path="/unauthorized" element={<Unauthorized />}></Route>
     </Routes>
   );
 }
