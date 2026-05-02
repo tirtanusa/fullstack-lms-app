@@ -117,8 +117,8 @@ const Register = () => {
                 {" "}
                 <UserRoundPlus />
               </div>
-              <h2 className="text-white">Create an Account</h2>
-              <p className="text-sm font-light text-white">
+              <h2 className="text-white text-lg md:text-3xl text-center">Create an Account</h2>
+              <p className="text-sm font-light text-white text-center">
                 Join now to access{" "}
                 <span className="text-white font-bold">+1.000 </span>
                 online course!

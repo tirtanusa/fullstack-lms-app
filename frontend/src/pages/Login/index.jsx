@@ -74,8 +74,8 @@ const Login = () => {
                   {" "}
                   <SquareArrowRightEnter />
                 </div>
-                <h2 className="text-white">Welcome back</h2>
-                <p className="text-sm font-light text-white">
+                <h2 className="text-white text-lg md:text-3xl text-center">Welcome back</h2>
+                <p className="text-sm font-light text-white text-center">
                   Please Log in to your account and start learning with us!
                 </p>
               </div>
