@@ -21,8 +21,6 @@ const Home = () => {
       });
   }, []);
 
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
-
   return (
     <>
       <div className="md:w-1/2 md:mx-auto">
@@ -74,12 +72,19 @@ const Home = () => {
         </section>
         <h3 className="font-bold">Featured Course</h3>
         <section className="flex gap-3 overflow-x-auto my-3">
-          {courses.map((course) => (
-            <CoursesCard
-              title={course.title}
-              description={course.description}
-            />
-          ))}
+          {error ? (
+            <div className="flex justify-center items-center w-full">
+              <p className="text-red-500">Error: {error}</p>
+            </div>
+          ) : (
+            courses.map((course) => (
+              <CoursesCard
+                key={course.id}
+                title={course.title}
+                description={course.description}
+              />
+            ))
+          )}
         </section>
 
         <div className="bg-[#e8ebf2] w-fit px-4 py-2 rounded-lg mx-auto items-center my-3">
