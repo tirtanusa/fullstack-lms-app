@@ -3,9 +3,23 @@ import CourseContainer from "./CourseContainer";
 import { useAuth } from "../../hooks/useAuth";
 import { Navigate } from "react-router";
 import UserTable from "../AdminDashboard/UserTable";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 const Dashboard = () => {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, token } = useAuth();
+
+  const [courses, setCourses] = useState([]);
+
+useEffect(() => {
+  if (!user || !token) return;
+
+  axios.get(`http://127.0.0.1:8000/api/courses/instructor/${user.id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then((res) => setCourses(res.data.data))
+    .catch((err) => console.error(err));
+}, [user?.id, token]);
+
 
   const profile = user
     ? {
@@ -58,8 +72,7 @@ const Dashboard = () => {
       {profile.role === "instructor" ? (
         <div className="bg-white rounded-lg shadow-xl max-h-200 mx-6 my-4 p-4">
           <p className="text-xl font-bold">Course created</p>
-          <CourseContainer courseName="Course 1" />
-          <CourseContainer courseName="Course 2" />
+          <CourseContainer courses={{courses}} />
         </div>
       ) : profile.role === "admin" ? (
         <UserTable />

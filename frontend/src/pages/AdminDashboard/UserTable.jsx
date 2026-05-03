@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const UserTable = () => {
   const { token } = useAuth();
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -74,7 +76,9 @@ const UserTable = () => {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex gap-2">
-                    <button className="p-1.5 rounded-lg bg-blue-50 text-blue-500 hover:bg-blue-100 cursor-pointer">
+                    <button
+                    onClick={() => navigate(`/users-detail/${user.id}`)}
+                    className="p-1.5 rounded-lg bg-blue-50 text-blue-500 hover:bg-blue-100 cursor-pointer">
                       <Pencil size={14} />
                     </button>
                     <button className="p-1.5 rounded-lg bg-red-50 text-red-500 hover:bg-red-100 cursor-pointer">

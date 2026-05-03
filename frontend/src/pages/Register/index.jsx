@@ -35,7 +35,7 @@ const Register = () => {
       const json = await res.json();
 
       if (json.success) {
-        navigate("/succeed"); // ✅ redirect setelah login
+        navigate("/success"); // ✅ redirect setelah login
       } else {
         setError(json.message);
         setErrors(json.errors || {});
