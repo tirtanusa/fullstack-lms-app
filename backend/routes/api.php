@@ -38,5 +38,6 @@ Route::middleware('auth:sanctum')->group(function () {
         // Student only routes can be added here in the future
         Route::apiResource('/categories', CategoryController::class)->except(['index', 'show']);
         Route::apiResource('/users', UserController::class)->except(['edit', 'create']);
+        Route::get('/createdCourse/{instructorId}', [CourseController::class, 'createdCourse']);
     });
 });

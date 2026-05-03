@@ -47,7 +47,7 @@ const CourseContainer = ({ courses = [] }) => {
               disabled={currentPage === 1}
               className="p-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
             >
-              <ChevronLeft size={14} />
+              <ChevronLeft size={14} className="text-bgbutton"/>
             </button>
 
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -57,7 +57,7 @@ const CourseContainer = ({ courses = [] }) => {
                 className={`px-3 py-1 rounded-lg text-xs cursor-pointer ${
                   currentPage === page
                     ? "bg-blue-500 text-white"
-                    : "bg-gray-100 hover:bg-gray-200"
+                    : "bg-gray-100 hover:bg-gray-200 text-bgbutton"
                 }`}
               >
                 {page}
@@ -69,7 +69,7 @@ const CourseContainer = ({ courses = [] }) => {
               disabled={currentPage === totalPages}
               className="p-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 disabled:opacity-40 cursor-pointer"
             >
-              <ChevronRight size={14} />
+              <ChevronRight size={14} className="text-bgbutton"/>
             </button>
           </div>
         </div>
