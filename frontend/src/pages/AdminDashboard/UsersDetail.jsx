@@ -21,7 +21,7 @@ const UserDetail = () => {
   useEffect(() => {
     if (!token) return;
 
-    fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
@@ -53,7 +53,7 @@ const UserDetail = () => {
     setIsSaving(true);
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

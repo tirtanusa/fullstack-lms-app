@@ -7,7 +7,7 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/courses/top-rated")
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/courses/top-rated`)
       .then((res) => {
         return res.json();
       })
