@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/me`, {
+    fetch(`api/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("token", tokenData);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/me`, {
+      const res = await fetch(`api/me`, {
         headers: {
           Authorization: `Bearer ${tokenData}`,
           Accept: "application/json",

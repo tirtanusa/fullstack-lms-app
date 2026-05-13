@@ -21,7 +21,7 @@ const UserDetail = () => {
   useEffect(() => {
     if (!token) return;
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
+    fetch(`api/users/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
@@ -53,7 +53,7 @@ const UserDetail = () => {
     setIsSaving(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
+      const res = await fetch(`api/users/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

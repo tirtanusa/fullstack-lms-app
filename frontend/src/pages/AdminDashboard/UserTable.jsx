@@ -15,7 +15,7 @@ const UserTable = () => {
   useEffect(() => {
     if (!token) return;
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
+    fetch(`api/users`, {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",

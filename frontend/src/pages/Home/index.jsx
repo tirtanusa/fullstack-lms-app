@@ -7,7 +7,7 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/courses/top-rated`)
+    fetch(`api/courses/top-rated`)
       .then((res) => {
         return res.json();
       })

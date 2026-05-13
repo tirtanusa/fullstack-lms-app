@@ -13,7 +13,7 @@ const Dashboard = () => {
 useEffect(() => {
   if (!user || !token) return;
 
-  fetch(`${import.meta.env.VITE_API_BASE_URL}/course/createdCourse/${user.id}`, { // ✅ sesuai route Laravel
+  fetch(`api/course/createdCourse/${user.id}`, { // ✅ sesuai route Laravel
     headers: { 
       Authorization: `Bearer ${token}`,
       Accept: "application/json",

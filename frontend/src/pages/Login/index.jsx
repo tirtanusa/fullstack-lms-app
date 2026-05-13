@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault(); // ✅ cegah reload halaman
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/login`, {
+      const res = await fetch(`api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
