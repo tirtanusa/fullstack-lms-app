@@ -26,7 +26,7 @@ const Navbar = () => {
           {/* nav */}
           <div className="hidden md:flex items-center gap-12 mr-12">
             <Link to="/">Home</Link>
-            <div>Courses</div>
+            <Link to="/courses">Courses</Link>
             <div>About</div>
             <div>Contact</div>
           </div>
